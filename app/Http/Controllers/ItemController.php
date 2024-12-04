@@ -35,7 +35,12 @@ class ItemController extends Controller
         ]);
 
         Item::create($validation);
-        return redirect()->route('item.index');
+        $message = [
+            'message' => 'Successfully added new data!',
+            'type-message' => 'success',
+        ];
+
+        return redirect()->route('item.index')->with($message);
     }
 
     /**
@@ -66,7 +71,13 @@ class ItemController extends Controller
         ]);
 
         Item::find($id)->update($validation);
-        return redirect()->route('item.index');
+
+        $message = [
+            'message' => 'Successfully updated data!',
+            'type-message' => 'success',
+        ];
+
+        return redirect()->route('item.index')->with($message);
     }
 
     /**
@@ -75,6 +86,12 @@ class ItemController extends Controller
     public function destroy(string $id)
     {
         Item::find($id)->delete();
-        return redirect()->route('item.index');
+
+        $message = [
+            'message' => 'Successfully delete data!',
+            'type-message' => 'info',
+        ];
+
+        return redirect()->route('item.index')->with($message);
     }
 }

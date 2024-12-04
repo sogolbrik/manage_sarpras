@@ -34,7 +34,13 @@ class ClassroomController extends Controller
             'name' => 'required'
         ]);
         Classroom::create($validation);
-        return redirect()->route('classroom.index');
+
+        $message = [
+            'message' => 'Successfully added new data!',
+            'type-message' => 'success',
+        ];
+
+        return redirect()->route('classroom.index')->with($message);
     }
 
     /**
@@ -64,7 +70,13 @@ class ClassroomController extends Controller
             'name' => 'required'
         ]);
         Classroom::find($id)->update($validation);
-        return redirect()->route('classroom.index');
+
+        $message = [
+            'message' => 'Successfully updated data!',
+            'type-message' => 'success',
+        ];
+
+        return redirect()->route('classroom.index')->with($message);
     }
 
     /**
@@ -73,6 +85,12 @@ class ClassroomController extends Controller
     public function destroy(string $id)
     {
         Classroom::find($id)->delete();
+
+        $message = [
+            'message' => 'Successfully delete data!',
+            'type-message' => 'info',
+        ];
+
         return redirect()->route('classroom.index');
     }
 }

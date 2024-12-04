@@ -58,7 +58,12 @@ class BorrowController extends Controller
             $items->update();
         }
 
-        return redirect()->route('borrow.index');
+        $message = [
+            'message' => 'Successfully added new data!',
+            'type-message' => 'success',
+        ];
+
+        return redirect()->route('borrow.index')->with($message);
     }
 
     /**
@@ -104,6 +109,11 @@ class BorrowController extends Controller
             $borrow->update();
         }
 
-        return redirect()->route('borrow.index');
+        $message = [
+            'message' => 'Successfully delete data!',
+            'type-message' => 'info',
+        ];
+
+        return redirect()->route('borrow.index')->with($message);
     }
 }

@@ -70,33 +70,49 @@
 <script src="{{ asset('backend/assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 <!-- Kaiadmin JS -->
 <script src="{{ asset('backend/assets/js/kaiadmin.min.js') }}"></script>
-<script>
-    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#177dff",
-        fillColor: "rgba(23, 125, 255, 0.14)",
-    });
+{{-- sweetalert --}}
+<script src="{{ asset('backend/assets/js/sweetalert.min.js') }}"></script>
 
-    $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#f3545d",
-        fillColor: "rgba(243, 84, 93, .14)",
-    });
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            position: "top-end",
+            title: "Opppsss, something's wrong",
+            icon: "error",
+            showConfirmButton: false,
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+        });
+    </script>
+@endif
 
-    $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#ffa534",
-        fillColor: "rgba(255, 165, 52, .14)",
-    });
-</script>
+@if (session('message'))
+    <script>
+        Swal.fire({
+            position: "top-end",
+            title: "{!! session('message') !!}",
+            icon: "{!! session('type-message') !!}",
+            showConfirmButton: false,
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+        });
+    </script>
+@endif
+
+@if (session('error-message'))
+    <script>
+        Swal.fire({
+            position: "top-end",
+            title: "{!! session('error-message') !!}",
+            icon: "error",
+            showConfirmButton: false,
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+        });
+    </script>
+@endif
 
 </html>

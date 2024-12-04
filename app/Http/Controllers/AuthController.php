@@ -23,7 +23,12 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return redirect()->route('login');
+        $message = [
+            'message' => 'incorrect email or pasword!',
+            'type-message' => 'error',
+        ];
+
+        return redirect()->route('login')->with($message);
     }
 
     public function logout()

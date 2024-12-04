@@ -227,33 +227,67 @@
 <script src="{{ asset('backend/assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 <!-- Kaiadmin JS -->
 <script src="{{ asset('backend/assets/js/kaiadmin.min.js') }}"></script>
+{{-- sweetalert --}}
+<script src="{{ asset('backend/assets/js/sweetalert.min.js') }}"></script>
+
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            position: "top-end",
+            title: "An error occurred, please try again!",
+            icon: "error",
+            toast: true,
+            showConfirmButton: false,
+            timer: 2500,
+        });
+    </script>
+@endif
+
+@if (session('message'))
+    <script>
+        Swal.fire({
+            position: "top-end",
+            title: "{!! session('message') !!}",
+            icon: "{!! session('type-message') !!}",
+            showConfirmButton: false,
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+        });
+    </script>
+@endif
+
+{{-- confirm deletion --}}
 <script>
-    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#177dff",
-        fillColor: "rgba(23, 125, 255, 0.14)",
-    });
-
-    $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#f3545d",
-        fillColor: "rgba(243, 84, 93, .14)",
-    });
-
-    $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#ffa534",
-        fillColor: "rgba(255, 165, 52, .14)",
-    });
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to return them!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        });
+    }
 </script>
+
+@if (session('error-message'))
+    <script>
+        Swal.fire({
+            position: "top-end",
+            title: "{!! session('error-message') !!}",
+            icon: "error",
+            showConfirmButton: false,
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+        });
+    </script>
+@endif
 
 </html>

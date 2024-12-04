@@ -39,7 +39,13 @@ class StudentController extends Controller
         ]);
 
         Student::create($validation);
-        return redirect()->route('student.index');
+
+        $message = [
+            'message' => 'Successfully added new data!',
+            'type-message' => 'success',
+        ];
+
+        return redirect()->route('student.index')->with($message);
     }
 
     /**
@@ -71,7 +77,13 @@ class StudentController extends Controller
         ]);
 
         Student::find($id)->update($validation);
-        return redirect()->route('student.index');
+
+        $message = [
+            'message' => 'Successfully updated data!',
+            'type-message' => 'success',
+        ];
+
+        return redirect()->route('student.index')->with($message);
     }
 
     /**
@@ -80,6 +92,12 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         Student::find($id)->delete();
-        return redirect()->route('student.index');
+
+        $message = [
+            'message' => 'Successfully delete data!',
+            'type-message' => 'info',
+        ];
+        
+        return redirect()->route('student.index')->with($message);
     }
 }
