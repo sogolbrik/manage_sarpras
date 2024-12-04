@@ -59,11 +59,11 @@
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->classroom->name }}</td>
                                                 <td>
-                                                    <form action="{{ route('student.destroy', $item->id) }}" method="POST">
+                                                    <form id="delete-form-{{ $item->id }}" action="{{ route('student.destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <a href="{{ route('student.edit', $item->id) }}" class="btn btn-warning btn-sm">edit</a>
-                                                        <button class="btn btn-danger btn-sm">delete</button>
+                                                        <button onclick="confirmDelete({{ $item->id }})" type="button" class="btn btn-danger btn-sm">delete</button>
                                                     </form>
                                                 </td>
                                             </tr>

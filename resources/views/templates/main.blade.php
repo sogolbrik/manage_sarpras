@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Sekolahan!</title>
+    <title>{{ config('app.name') }}</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-    <link rel="icon" href="{{ asset('backend/assets/img/kaiadmin/favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('backend/assets/img/flags/id.png') }}" type="image/x-icon" />
 
     <!-- Fonts and icons -->
     <script src="{{ asset('backend/assets/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -48,8 +48,8 @@
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    <a href="index.html" class="logo">
-                        <img src="{{ asset('backend/assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand" height="20" />
+                    <a href="{{ route('dashboard') }}" class="logo">
+                        <img src="{{ asset('backend/assets/img/flags/id.png') }}" alt="navbar brand" class="navbar-brand" height="20" />
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
@@ -233,7 +233,7 @@
 @if ($errors->any())
     <script>
         Swal.fire({
-            position: "top-end",
+            position: "center",
             title: "An error occurred, please try again!",
             icon: "error",
             toast: true,
@@ -246,7 +246,7 @@
 @if (session('message'))
     <script>
         Swal.fire({
-            position: "top-end",
+            position: "top",
             title: "{!! session('message') !!}",
             icon: "{!! session('type-message') !!}",
             showConfirmButton: false,

@@ -56,11 +56,11 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>
-                                                    <form action="{{ route('classroom.destroy', $item->id) }}" method="POST">
+                                                    <form id="delete-form-{{ $item->id }}" action="{{ route('classroom.destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <a href="{{ route('classroom.edit', $item->id) }}" class="btn btn-warning btn-sm">edit</a>
-                                                        <button class="btn btn-danger btn-sm">delete</button>
+                                                        <button type="button" onclick="confirmDelete({{ $item->id }})" class="btn btn-danger btn-sm">delete</button>
                                                     </form>
                                                 </td>
                                             </tr>

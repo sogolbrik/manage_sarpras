@@ -57,12 +57,12 @@
                                                 <td>{{ $see->name }}</td>
                                                 <td>{{ $see->status }}</td>
                                                 <td>
-                                                    <form action="{{ route('item.destroy', $see->id) }}" method="POST">
+                                                    <form id="delete-form-{{ $see->id }}" action="{{ route('item.destroy', $see->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
 
                                                         <a href="{{ route('item.edit', $see->id) }}" class="btn btn-warning btn-sm">edit</a>
-                                                        <button class="btn btn-danger btn-sm">delete</button>
+                                                        <button onclick="confirmDelete({{ $see->id }})" type="button" class="btn btn-danger btn-sm">delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
